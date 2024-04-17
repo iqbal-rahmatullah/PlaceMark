@@ -1,6 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget cardPlace(String image, String title, String location) {
+Widget cardPlace(
+    {required String image,
+    required String title,
+    required String location,
+    required String rate}) {
   return Container(
     width: 260,
     height: 225,
@@ -17,9 +22,11 @@ Widget cardPlace(String image, String title, String location) {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
+            child: Image.network(
               image,
               fit: BoxFit.cover,
+              width: double.infinity,
+              height: 150,
             ),
           ),
           const SizedBox(
@@ -28,25 +35,28 @@ Widget cardPlace(String image, String title, String location) {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
+              Flexible(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star_rate_rounded,
                     color: Color(0xffEE684A),
                     size: 20,
                   ),
                   Text(
-                    "4.8",
-                    style: TextStyle(
+                    rate,
+                    style: const TextStyle(
                       fontFamily: 'poppins',
                       color: Color(0xff6F7789),
                     ),

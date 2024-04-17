@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
 import 'package:travel_indonesia_app/pages/main_page.dart';
+import 'package:travel_indonesia_app/pages/saved_page.dart';
+import 'package:travel_indonesia_app/pages/search_page.dart';
 import 'package:travel_indonesia_app/widgets/navbar.dart';
 
 void main() {
@@ -17,8 +19,8 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   var pages = [
     const MainPage(),
-    const Text("Cek"),
-    const Text("Cek"),
+    const SearchPage(),
+    const SavePage(),
   ];
   int currentIndex = BottomNavbar.currentIndex;
 
@@ -28,20 +30,20 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: const Color(0xffF6F6F6),
-        // body: Stack(
-        //   children: [
-        //     IndexedStack(
-        //       index: BottomNavbar.currentIndex,
-        //       children: pages,
-        //     ),
-        //     BottomNavbar(
-        //       reload: () {
-        //         setState(() {});
-        //       },
-        //     )
-        //   ],
-        // ),
-        body: const DetailPage(),
+        body: Stack(
+          children: [
+            IndexedStack(
+              index: BottomNavbar.currentIndex,
+              children: pages,
+            ),
+            BottomNavbar(
+              reload: () {
+                setState(() {});
+              },
+            )
+          ],
+        ),
+        // body: const DetailPage(),
       ),
     );
   }

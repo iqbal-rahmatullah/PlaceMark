@@ -1,6 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget cardSmallPlace(String image, String title, String location) {
+Widget cardSmallPlace({
+  required String image,
+  required String title,
+  required String location,
+  required String rating,
+}) {
   return Container(
     height: 120,
     decoration: BoxDecoration(
@@ -14,7 +20,7 @@ Widget cardSmallPlace(String image, String title, String location) {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
+            child: Image.network(
               image,
               width: 100,
               height: 120,
@@ -29,7 +35,7 @@ Widget cardSmallPlace(String image, String title, String location) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                title,
+                (title.length > 18) ? title.substring(0, 18) + "..." : title,
                 style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 16,
@@ -57,16 +63,16 @@ Widget cardSmallPlace(String image, String title, String location) {
               const SizedBox(
                 height: 2,
               ),
-              const Row(
+              Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star_rate_rounded,
                     color: Color(0xffEE684A),
                     size: 20,
                   ),
                   Text(
-                    "4.8",
-                    style: TextStyle(
+                    rating,
+                    style: const TextStyle(
                         fontFamily: 'poppins',
                         color: Color(0xff6F7789),
                         fontSize: 14,
