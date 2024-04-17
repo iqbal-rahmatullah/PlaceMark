@@ -169,11 +169,6 @@ class _MainPageState extends State<MainPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else {
-                  if (snapshot.data!.isEmpty) {
-                    return const Center(
-                      child: Text("Data not found"),
-                    );
-                  }
                   return ListView.builder(
                       padding: const EdgeInsets.only(right: 20, bottom: 0),
                       scrollDirection: Axis.vertical,
