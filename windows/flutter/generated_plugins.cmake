@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  hive_storage
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

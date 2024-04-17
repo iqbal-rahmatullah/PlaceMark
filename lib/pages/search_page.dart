@@ -17,8 +17,12 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  Key _formKey = GlobalKey<FormState>();
+  final Key _formKey = GlobalKey<FormState>();
   var provinsi = Provinsi().allProvinsi;
+  DestinationController destinationController =
+      DestinationController(http.Client());
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,6 +57,10 @@ class _SearchPageState extends State<SearchPage> {
                 Form(
                   key: _formKey,
                   child: TextFormField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
                     decoration: InputDecoration(
                       hintText: "Cari tempat wisata",
                       hintStyle: const TextStyle(color: Color(0xff6F7789)),
@@ -137,12 +145,21 @@ class _SearchPageState extends State<SearchPage> {
                 SizedBox(
                     height: 500,
                     child: FutureBuilder(
-                      future: DestinationController(http.Client()).all(),
+                      future: (searchController.text.isEmpty)
+                          ? destinationController.all()
+                          : destinationController.search(searchController.text),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
                             child: CircularProgressIndicator(),
+                          );
+                        } else if (!snapshot.hasData) {
+                          return const Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 40),
+                              child: Text("Data tidak ditemukan"),
+                            ),
                           );
                         } else {
                           return ListView.builder(

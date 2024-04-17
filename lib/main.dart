@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:travel_indonesia_app/models/bookmark.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
 import 'package:travel_indonesia_app/pages/main_page.dart';
 import 'package:travel_indonesia_app/pages/saved_page.dart';
 import 'package:travel_indonesia_app/pages/search_page.dart';
 import 'package:travel_indonesia_app/widgets/navbar.dart';
+import 'package:path_provider/path_provider.dart' as path;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final dir = await path.getApplicationDocumentsDirectory();
+
+  Hive.init(dir.path);
+  Hive.registerAdapter(BookmarkAdapter());
+
   runApp(const MainApp());
 }
 
@@ -29,6 +38,7 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: const Color(0xffF6F6F6),
         body: Stack(
           children: [

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:travel_indonesia_app/controllers/bookmark_controller.dart';
 import 'package:travel_indonesia_app/controllers/destination_controller.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
 import 'package:travel_indonesia_app/utils/api.dart';
@@ -18,6 +20,15 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   var currentIndex = 0;
   var httpClient = http.Client();
+
+  BookmarkController bookmarkController = BookmarkController();
+
+  @override
+  void initState() {
+    // bookmarkController.clearBookmark();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,6 +169,11 @@ class _MainPageState extends State<MainPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else {
+                  if (snapshot.data!.isEmpty) {
+                    return const Center(
+                      child: Text("Data not found"),
+                    );
+                  }
                   return ListView.builder(
                       padding: const EdgeInsets.only(right: 20, bottom: 0),
                       scrollDirection: Axis.vertical,

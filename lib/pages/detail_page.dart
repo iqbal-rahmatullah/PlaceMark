@@ -1,4 +1,10 @@
+import 'dart:ffi';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_indonesia_app/controllers/bookmark_controller.dart';
+import 'package:travel_indonesia_app/models/bookmark.dart';
+import 'package:travel_indonesia_app/utils/api.dart';
 
 class DetailPage extends StatefulWidget {
   final String image;
@@ -6,6 +12,7 @@ class DetailPage extends StatefulWidget {
   final String location;
   final String rate;
   final String description;
+
   const DetailPage(
       {super.key,
       required this.image,
@@ -19,6 +26,22 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  final BookmarkController bookmarkController = BookmarkController();
+  bool isBookmarked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkBookmark();
+  }
+
+  void checkBookmark() async {
+    List<Bookmark> bookmarks = await bookmarkController.getAll();
+    setState(() {
+      isBookmarked = bookmarks.any((bookmark) => bookmark.name == widget.title);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,16 +150,56 @@ class _DetailPageState extends State<DetailPage> {
               margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 40),
               child: FloatingActionButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
-                backgroundColor: const Color(0xffF36D72),
-                onPressed: () {},
-                child: const Text(
-                  "Save to your trip",
-                  style: TextStyle(
-                      fontFamily: 'poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                backgroundColor:
+                    isBookmarked ? Colors.grey : const Color(0xffF36D72),
+                onPressed: isBookmarked
+                    ? null
+                    : () {
+                        bookmarkController.addBookmark(Bookmark(
+                          id: 0,
+                          name: widget.title,
+                          cover: widget.image,
+                          rate: double.parse(widget.rate),
+                          location: widget.location,
+                          description: widget.description,
+                        ));
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.green,
+                            content: Text("Saved to your trip"),
+                            duration: Duration(seconds: 1),
+                          ),
+                        );
+                        setState(() {
+                          isBookmarked = true;
+                        });
+                      },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      (isBookmarked)
+                          ? Icons.bookmark_added
+                          : Icons.bookmark_add,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      (isBookmarked) ? "Telah tersimpan" : "Save to your trip",
+                      style: const TextStyle(
+                        fontFamily: 'poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

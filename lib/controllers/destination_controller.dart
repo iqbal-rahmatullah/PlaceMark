@@ -32,7 +32,7 @@ class DestinationController implements DestinationRemoteDataSource {
 
   @override
   Future<List<DestinationModel>> search(String query) async {
-    Uri url = Uri.parse("${apiData.baseUrl}/destination/query");
+    Uri url = Uri.parse("${apiData.baseUrl}/destination/${query}");
     final response = await client.get(url).timeout(Duration(seconds: 3));
     if (response.statusCode == 200) {
       List list = jsonDecode(response.body)["data"];

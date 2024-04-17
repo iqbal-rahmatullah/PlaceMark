@@ -6,6 +6,7 @@ Widget cardSmallPlace({
   required String title,
   required String location,
   required String rating,
+  bool isDismiss = false,
 }) {
   return Container(
     height: 120,
