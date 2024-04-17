@@ -44,6 +44,19 @@ class DestinationController implements DestinationRemoteDataSource {
     }
   }
 
+  Future<List<DestinationModel>> searchByProvinsi(String provinsi) async {
+    Uri url = Uri.parse("${apiData.baseUrl}/destination/provinsi/${provinsi}");
+    final response = await client.get(url).timeout(Duration(seconds: 3));
+    if (response.statusCode == 200) {
+      List list = jsonDecode(response.body)["data"];
+      return list.map((e) => DestinationModel.fromJson(e)).toList();
+    } else if (response.statusCode == 404) {
+      throw NotFoundException();
+    } else {
+      throw ServerException();
+    }
+  }
+
   @override
   Future<List<DestinationModel>> top() async {
     Uri url = Uri.parse("${apiData.baseUrl}/destination/top");

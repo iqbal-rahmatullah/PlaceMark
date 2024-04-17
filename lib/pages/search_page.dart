@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travel_indonesia_app/controllers/destination_controller.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
+import 'package:travel_indonesia_app/pages/provinsi_page.dart';
 import 'package:travel_indonesia_app/utils/api.dart';
 import 'package:travel_indonesia_app/utils/provinsi.dart';
 import 'package:travel_indonesia_app/widgets/card_place.dart';
@@ -95,27 +96,38 @@ class _SearchPageState extends State<SearchPage> {
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      Column(
-                        children: [
-                          ClipOval(
-                            child: Image.asset(
-                              'assets/images/provinsi/${provinsi[index]['banner']}',
-                              fit: BoxFit.cover,
-                              width: 60,
-                              height: 60,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProvinsiPage(
+                                  nama: provinsi[index]['nama'],
+                                ),
+                              ));
+                        },
+                        child: Column(
+                          children: [
+                            ClipOval(
+                              child: Image.asset(
+                                'assets/images/provinsi/${provinsi[index]['banner']}',
+                                fit: BoxFit.cover,
+                                width: 60,
+                                height: 60,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            provinsi[index]['nama'],
-                            style: const TextStyle(
-                                fontFamily: 'poppins',
-                                fontSize: 12,
-                                color: Colors.black),
-                          )
-                        ],
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              provinsi[index]['nama'],
+                              style: const TextStyle(
+                                  fontFamily: 'poppins',
+                                  fontSize: 12,
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
                       ),
                       const SizedBox(
                         width: 15,
