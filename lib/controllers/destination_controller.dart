@@ -19,7 +19,7 @@ class DestinationController implements DestinationRemoteDataSource {
   @override
   Future<List<DestinationModel>> all() async {
     Uri url = Uri.parse("${apiData.baseUrl}/destination");
-    final response = await client.get(url).timeout(Duration(seconds: 3));
+    final response = await client.get(url).timeout(const Duration(seconds: 3));
     if (response.statusCode == 200) {
       List list = jsonDecode(response.body)["data"];
       return list.map((e) => DestinationModel.fromJson(e)).toList();

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_indonesia_app/controllers/destination_controller.dart';
 import 'package:http/http.dart' as http;

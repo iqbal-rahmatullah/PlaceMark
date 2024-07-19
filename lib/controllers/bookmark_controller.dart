@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:travel_indonesia_app/error/exception.dart';
 import 'package:travel_indonesia_app/models/bookmark.dart';

@@ -1,13 +1,10 @@
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:travel_indonesia_app/controllers/destination_controller.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
 import 'package:travel_indonesia_app/pages/provinsi_page.dart';
 import 'package:travel_indonesia_app/utils/api.dart';
 import 'package:travel_indonesia_app/utils/provinsi.dart';
-import 'package:travel_indonesia_app/widgets/card_place.dart';
 import 'package:travel_indonesia_app/widgets/card_small_place.dart';
 
 class SearchPage extends StatefulWidget {
@@ -145,7 +142,7 @@ class _SearchPageState extends State<SearchPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Reccommended ",
+                  "Available place ",
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

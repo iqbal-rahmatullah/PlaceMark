@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_indonesia_app/models/bookmark.dart';
-import 'package:travel_indonesia_app/pages/detail_page.dart';
 import 'package:travel_indonesia_app/pages/main_page.dart';
 import 'package:travel_indonesia_app/pages/saved_page.dart';
 import 'package:travel_indonesia_app/pages/search_page.dart';

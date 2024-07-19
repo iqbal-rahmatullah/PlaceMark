@@ -1,17 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:travel_indonesia_app/controllers/bookmark_controller.dart';
-import 'package:travel_indonesia_app/controllers/destination_controller.dart';
 import 'package:travel_indonesia_app/models/bookmark.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
 import 'package:travel_indonesia_app/pages/empty_page.dart';
-import 'package:travel_indonesia_app/utils/api.dart';
-import 'package:travel_indonesia_app/widgets/card_place.dart';
 import 'package:travel_indonesia_app/widgets/card_small_place.dart';
-import 'package:http/http.dart' as http;
 
 class SavePage extends StatefulWidget {
   const SavePage({super.key});

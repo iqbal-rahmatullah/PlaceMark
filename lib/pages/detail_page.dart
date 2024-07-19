@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_indonesia_app/controllers/bookmark_controller.dart';
 import 'package:travel_indonesia_app/models/bookmark.dart';
-import 'package:travel_indonesia_app/utils/api.dart';
 
 class DetailPage extends StatefulWidget {
   final String image;

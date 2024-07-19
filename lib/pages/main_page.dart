@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:travel_indonesia_app/controllers/bookmark_controller.dart';
 import 'package:travel_indonesia_app/controllers/destination_controller.dart';
 import 'package:travel_indonesia_app/pages/detail_page.dart';
@@ -51,7 +48,7 @@ class _MainPageState extends State<MainPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Wonderful Indonesia",
+                    "PlaceMark",
                     style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 28,
@@ -135,7 +132,7 @@ class _MainPageState extends State<MainPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "Top Place",
+                "All Place",
                 style: TextStyle(
                   fontFamily: 'poppins',
                   fontSize: 20,
